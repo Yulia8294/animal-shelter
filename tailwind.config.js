@@ -39,7 +39,7 @@ module.exports = {
           900: "#311f02",
         },
         foreground: "#231d1a",
-        background: "#f4f1f2",
+        background: "#EDE8ea",
         warning: "#f49d0c",
         primary: {
           50: "#e9e8e8",
