@@ -1,0 +1,44 @@
+.bg-gradient {
+  // background-image: linear-gradient(
+  //   to right top,
+  //   #1b482e,
+  //   #396a3f,
+  //   #5f8e4d,
+  //   #8bb259,
+  //   #bfd564,
+  //   #f9f871
+  // );
+  background-image: linear-gradient(
+    to right top,
+    #f49d0c,
+    #eea524,
+    #e9ac35,
+    #e4b345,
+    #e0b954,
+    #cab354,
+    #b6ad55,
+    #a3a657,
+    #7d914e,
+    #5a7b46,
+    #3c643d,
+    #214e34
+  );
+}
+
+.card-gradient {
+  background-image: linear-gradient(
+    to right bottom,
+    #f49d0c,
+    #eea524,
+    #e9ac35,
+    #e4b345,
+    #e0b954,
+    #cab354,
+    #b6ad55,
+    #a3a657,
+    #7d914e,
+    #5a7b46,
+    #3c643d,
+    #214e34
+  );
+}

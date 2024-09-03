@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1 {
+  font-size: 2.5rem;
+  color: theme("colors.primary.500");
+  @apply md:text-[3.5rem];
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 500;
+  color: theme("colors.primary.500");
+  @apply md:text-[2.5rem];
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: theme("colors.primary.500");
+  @apply md:text-[2.375rem];
+}
+
+h4 {
+  font-size: 1.125rem;
+  color: theme("colors.primary.500");
+  font-weight: 500;
+  @apply md:text-[1.5rem];
+}
+
+h5 {
+  font-size: 1.125rem;
+  color: theme("colors.primary.500");
+  font-weight: 500;
+}
+
+p {
+  font-weight: 300;
+  color: theme("colors.secondary.500");
+  white-space: pre-line;
+  @apply text-[1rem] lg:text-[1.125rem];
+}

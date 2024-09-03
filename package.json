@@ -10,7 +10,9 @@
 	},
 	"dependencies": {
 		"@nextui-org/button": "2.0.37",
+		"@nextui-org/card": "^2.0.33",
 		"@nextui-org/code": "2.0.32",
+		"@nextui-org/image": "^2.0.31",
 		"@nextui-org/input": "2.2.4",
 		"@nextui-org/kbd": "2.0.33",
 		"@nextui-org/link": "2.0.34",
@@ -28,9 +30,11 @@
 		"next": "14.2.4",
 		"next-themes": "^0.2.1",
 		"react": "18.3.1",
-		"react-dom": "18.3.1"
+		"react-dom": "18.3.1",
+		"sass": "^1.77.8"
 	},
 	"devDependencies": {
+		"@trivago/prettier-plugin-sort-imports": "^4.3.0",
 		"@types/node": "20.5.7",
 		"@types/react": "18.3.3",
 		"@types/react-dom": "18.3.0",
@@ -48,6 +52,9 @@
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"eslint-plugin-unused-imports": "^3.2.0",
 		"postcss": "8.4.38",
+		"prettier": "^3.3.3",
+		"prettier-plugin-organize-imports": "^4.0.0",
+		"prettier-plugin-tailwindcss": "^0.6.6",
 		"tailwind-variants": "0.1.20",
 		"tailwindcss": "3.4.3",
 		"typescript": "5.0.4"

@@ -2,27 +2,23 @@ export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
   name: "Next.js + NextUI",
-  description: "Make beautiful websites regardless of your design experience.",
+  description: "ПРИВЕТ!!!!!",
   navItems: [
     {
-      label: "Home",
+      label: "Приют",
       href: "/",
     },
     {
-      label: "Docs",
-      href: "/docs",
+      label: "Наши хвостики",
+      href: "/gallery",
     },
     {
-      label: "Pricing",
-      href: "/pricing",
+      label: "Как помочь?",
+      href: "/help",
     },
     {
-      label: "Blog",
-      href: "/blog",
-    },
-    {
-      label: "About",
-      href: "/about",
+      label: "Контакты",
+      href: "/contacts",
     },
   ],
   navMenuItems: [
@@ -38,32 +34,9 @@ export const siteConfig = {
       label: "Projects",
       href: "/projects",
     },
-    {
-      label: "Team",
-      href: "/team",
-    },
-    {
-      label: "Calendar",
-      href: "/calendar",
-    },
-    {
-      label: "Settings",
-      href: "/settings",
-    },
-    {
-      label: "Help & Feedback",
-      href: "/help-feedback",
-    },
-    {
-      label: "Logout",
-      href: "/logout",
-    },
   ],
   links: {
-    github: "https://github.com/nextui-org/nextui",
-    twitter: "https://twitter.com/getnextui",
-    docs: "https://nextui.org",
-    discord: "https://discord.gg/9b6yyZKmH4",
-    sponsor: "https://patreon.com/jrgarciadev",
+    insta: "https://github.com/nextui-org/nextui",
+    donate: "",
   },
 };
