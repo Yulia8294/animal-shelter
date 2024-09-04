@@ -42,3 +42,9 @@
     #214e34
   );
 }
+
+.accent-border {
+  box-shadow: 0 0 0 5px theme("colors.accentGreen-500");
+  outline: dashed 5px theme("colors.accentYellow-500") ;
+  outline-offset: 0;
+}

@@ -1,9 +1,25 @@
 import { Image } from "@nextui-org/image";
 
-import { dogCards, PetCard } from "@/components/pet-card";
+import { PawIcon, PresentIcon, VolunteerIcon } from "@/components/icons";
+import { PetCard, dogCards } from "@/components/pet-card";
 import Section from "@/components/section";
 import { Card, CardBody } from "@nextui-org/card";
 import "./styles.scss";
+
+const helpItems = [
+  {
+    title: "Помочь приюту",
+    icon: PresentIcon,
+  },
+  {
+    title: "Наши хвостики",
+    icon: PawIcon,
+  },
+  {
+    title: "Стать волонтером",
+    icon: VolunteerIcon,
+  },
+];
 
 export default function Home() {
   const dogCardsView = (
@@ -44,9 +60,9 @@ export default function Home() {
         <div className="grid grid-cols-2">
           <div></div>
 
-          <Card isBlurred className="bg-black/50 rounded-3xl">
+          <Card isBlurred className="bg-background/50 rounded-3xl">
             <CardBody>
-              <p className="text-white text-center text-2xl py-40">
+              <p className="text-primary-500 text-center text-2xl py-40 px-6">
                 Приют Дом собачьей надежды - частный, негосударственный приют. В
                 нашем приюте потерявшиеся, брошенные собаки получают шанс и
                 надежду обрести семью и новый дом. <br /> <br /> Покупка кормов,
@@ -59,20 +75,31 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section classOverrides="bg-[url(/assets/bg3.png)]">
-        <div className="grid grid-cols-3 gap-8">
-          <Card isBlurred className="bg-black/50 rounded-3xl h-40">
-            <CardBody>Some text</CardBody>
-          </Card>
+      <Section>
+        <div className="grid grid-cols-3 gap-10 items-center justify-center">
+          {helpItems.map((item, index) => {
+            let Icon = item.icon;
 
-          <Card isBlurred className="bg-black/50 rounded-3xl h-40">
-            <CardBody>Some text</CardBody>
-          </Card>
-
-          <Card isBlurred className="bg-black/50 rounded-3xl h-40">
-            <CardBody>Some text</CardBody>
-          </Card>
+            return (
+              <Card
+                key={index}
+                isBlurred
+                className="bg-background/50 rounded-3xl p-6 cursor-pointer hover:scale-105 accent-border"
+              >
+                <CardBody>
+                  <div className="flex flex-col items-center gap-4">
+                    <Icon size={80} className="fill-accentYellow-500" />
+                    <h4>{item.title}</h4>
+                  </div>
+                </CardBody>
+              </Card>
+            );
+          })}
         </div>
+      </Section>
+
+      <Section classOverrides="bg-[url(/assets/bg3.png)]">
+        <div className=" h-[500px]"></div>
       </Section>
 
       <Section>
