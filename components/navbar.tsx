@@ -26,12 +26,13 @@ export const Navbar = () => {
     <NextUINavbar
       maxWidth="full"
       position="sticky"
-      isBlurred={false}
+      isBlurred={true}
       disableScrollHandler={false}
       onScrollPositionChange={(scrollPosition) => {
         setIsNavbarColored(scrollPosition > 0);
       }}
-      className={`drop-shadow-lg ${isNavbarColored ? "bg-background/70" : "bg-transparent"} transition delay-0 duration-300`}
+      className="drop-shadow-lg bg-background"
+      // className={`drop-shadow-lg ${isNavbarColored ? "bg-background/70" : "bg-transparent"} transition delay-0 duration-300`}
     >
       <NavbarBrand as="li" className="gap-3 max-w-fit">
         <NextLink className="flex justify-start items-center gap-1" href="/">

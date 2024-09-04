@@ -1,13 +1,13 @@
 import "@/styles/globals.scss";
-import { Metadata, Viewport } from "next";
 import clsx from "clsx";
+import { Metadata, Viewport } from "next";
 import "./styles.scss";
 
 import { Providers } from "./providers";
 
-import { siteConfig } from "@/config/site";
-import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
+import { fontSans } from "@/config/fonts";
+import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
   title: {
@@ -42,7 +42,6 @@ export default function RootLayout({
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className="bg-gradient absolute top-0 left-0 right-0 h-screen z-0" />
           <Navbar />
           {/* container mx-auto max-w-7xl pt-16 px-6 */}
           <main className="flex-grow">{children}</main>

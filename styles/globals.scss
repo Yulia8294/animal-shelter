@@ -41,3 +41,20 @@ p {
   white-space: pre-line;
   @apply text-[1rem] lg:text-[1.125rem];
 }
+
+@layer components {
+  .transparent-overlay {
+    position: relative;
+    overflow: hidden;
+    &::before {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 2;
+      right: 0;
+      content: "";
+      background-color: rgba(0, 0, 0, 0.250);
+    }
+  }
+}
