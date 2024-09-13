@@ -9,6 +9,15 @@ module.exports = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        "slide-in": {
+          "0%": { opacity: 0, transform: "translateX(10px)" },
+          "100%": { opacity: 1, transform: "translateX(0)" },
+        },
+      },
+      animation: {
+        "slide-in": "slide-in 0.5s forwards",
+      },
       fontFamily: {
         sans: ["var(--font-sans)"],
         mono: ["var(--font-mono)"],
@@ -39,7 +48,7 @@ module.exports = {
           900: "#311f02",
         },
         accentPurple: {
-          500: "#966B9D"
+          500: "#966B9D",
         },
         foreground: "#231d1a",
         background: "#fbfefb",
@@ -102,7 +111,7 @@ module.exports = {
               900: "#311f02",
             },
             accentPurple: {
-              500: "#966B9D"
+              500: "#966B9D",
             },
             warning: "#f49d0c",
             foreground: "#231d1a",

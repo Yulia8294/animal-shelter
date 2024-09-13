@@ -1,34 +1,18 @@
-import { PawIcon } from "@/components/icons";
-import { PetCard, dogCards } from "@/components/pet-card";
+import { HeartFilledIcon, PawIcon } from "@/components/icons";
+import { PetCard } from "@/components/pet-card";
 import Section from "@/components/section";
+import { PETS_CATALOG } from "@/content/pets-catalog";
+import { helpItems, helpOptions } from "@/content/texts";
 import { Button } from "@nextui-org/button";
 import { Card, CardBody, CardFooter } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
 import { Link } from "@nextui-org/link";
 import "./styles.scss";
 
-const helpItems = [
-  {
-    title: "Помочь приюту",
-    subtitle: "",
-    icon: "/assets/donate.svg",
-  },
-  {
-    title: "Наши хвостики",
-    subtitle: "",
-    icon: "/assets/adopt.svg",
-  },
-  {
-    title: "Стать волонтером",
-    icon: "/assets/volunteer.svg",
-    subtitle: "",
-  },
-];
-
 export default function Home() {
   const dogCardsView = (
     <>
-      {dogCards.map((dog, index) => (
+      {PETS_CATALOG.map((dog, index) => (
         <PetCard key={index} data={dog} />
       ))}
     </>
@@ -129,6 +113,50 @@ export default function Home() {
               </Card>
             );
           })}
+        </div>
+      </Section>
+
+      <Section classOverrides="bg-[url(/assets/bg-circle.svg)]">
+        <div className="grid grid-cols-2 gap-8">
+          <Card isBlurred className="bg-white/50 rounded-3xl">
+            <CardBody>
+              <Image
+                src="assets/bg-5.jpg"
+                className="w-full h-full object-cover aspect-square"
+              />
+            </CardBody>
+          </Card>
+
+          <Card isBlurred className="bg-white/50 rounded-3xl">
+            <CardBody className="p-10 flex flex-col justify-between">
+              <div>
+                <h1 className="font-bold">Как помочь?</h1>
+                <p className="text-primary-500/80 mb-10">
+                  Помоги хвостикам любым удобным способом
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-7">
+                {helpOptions.map((option, index) => (
+                  <li key={index} className={`flex gap-2 list-none`}>
+                    <PawIcon />
+                    <div className="text-xl">{option}</div>
+                  </li>
+                ))}
+              </div>
+
+              <Button
+                as={Link}
+                className="self-start px-12 py-8 mt-5 text-md rounded-full font-semibold text-white bg-accentPurple-500"
+                href={"/help"}
+                endContent={<HeartFilledIcon fill="white" />}
+                variant="flat"
+                size="lg"
+              >
+                Узнать больше
+              </Button>
+            </CardBody>
+          </Card>
         </div>
       </Section>
 

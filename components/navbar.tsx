@@ -68,7 +68,7 @@ export const Navbar = () => {
           <Button
             isExternal
             as={Link}
-            className="text-md rounded-full font-normal text-white bg-accentGreen-500"
+            className="text-md rounded-full font-normal text-white bg-accentYellow-500"
             href={siteConfig.links.donate}
             startContent={<HeartFilledIcon className="text-white" />}
             variant="flat"
