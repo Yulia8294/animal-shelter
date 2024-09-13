@@ -49,10 +49,9 @@ export default function Home() {
             <h2 className="text-white font-semibold">Дом Собачьей Надежды</h2>
             <p className="text-white/80">Каждый хвостик заслуживает свой дом</p>
             <Button
-              isExternal
               as={Link}
               className="px-12 py-8 mt-5 text-md rounded-full font-semibold text-white bg-accentYellow-500"
-              href={""}
+              href={"/catalog"}
               startContent={<PawIcon fill="white" />}
               variant="flat"
               size="lg"
@@ -65,9 +64,21 @@ export default function Home() {
 
       <Section classOverrides="container">
         <div>
-          <h1 className="text-start w-full text-primary-400 font-semibold mb-8">
-            Наши хвостики
-          </h1>
+          <div className="flex justify-between">
+            <h1 className="text-start w-full text-primary-400 font-semibold mb-8">
+              Наши хвостики
+            </h1>
+
+            <Button
+              as={Link}
+              className="px-12 py-8 mt-5 text-md rounded-full font-semibold text-white bg-accentPurple-500"
+              href={"/catalog"}
+              variant="flat"
+              size="lg"
+            >
+              Смотреть всех
+            </Button>
+          </div>
 
           <div className="flex gap-8 overflow-visible">{dogCardsView}</div>
         </div>
@@ -75,7 +86,7 @@ export default function Home() {
 
       <Section classOverrides="bg-[url(/assets/bg-blob.svg)] relative">
         <div className="grid grid-cols-2">
-          <div></div>
+          <div />
           <Card isBlurred className="bg-background/50 rounded-3xl">
             <CardBody>
               <p className="text-primary-500/80 text-left text-2xl py-20 px-6">

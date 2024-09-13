@@ -1,7 +1,7 @@
 import { Button } from "@nextui-org/button";
 import { Card, CardFooter } from "@nextui-org/card";
-import { FC } from "react";
 import { Image } from "@nextui-org/image";
+import { FC } from "react";
 
 import { HeartIcon } from "./icons";
 
@@ -42,23 +42,23 @@ export const PetCard: FC<ComponentProps> = ({ data }) => {
     <Card
       isFooterBlurred
       radius="md"
-      className="rotate-0 scale-1 hover:rotate-2 hover:scale-[1.12] cursor-pointer"
+      className="rotate-0 scale-1 hover:rotate-2 hover:scale-[1.12] hover:z-10 cursor-pointer aspect-[3/4]"
     >
       <Image
         removeWrapper
         className="z-0 w-full h-full object-cover rounded-none rounded-t-lg"
-        height={500}
-        width={300}
         src={data.image}
       />
-      <CardFooter className="absolute bottom-0 rounded-[100%_0%_100%_0%_/_39%_100%_0%_61%] bg-black/50 p-8">
+      <CardFooter className="absolute bottom-0 rounded-t-xl md:rounded-[100%_0%_100%_0%_/_39%_100%_0%_61%] bg-black/50 p-4 md:p-5 md:pt-10 lg:p-6 lg:pt-10 transition-all">
         <div className="flex flex-col justify-start gap-1 w-full">
           <div className="flex gap-2 justify-between items-end">
             <div className="flex flex-col justify-start gap-1">
-              <h3 className="text-start text-white font-semibold">
+              <div className="text-start text-md md:text-lg lg:text-2xl text-white font-semibold">
                 {data.name}
-              </h3>
-              <h4 className="text-start text-white">{data.age} лет</h4>
+              </div>
+              <div className="text-start text-md md:text-lg lg:text-2xl text-white">
+                {data.age} лет
+              </div>
             </div>
 
             <Button isIconOnly color="warning" aria-label="Like">

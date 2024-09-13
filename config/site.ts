@@ -10,7 +10,7 @@ export const siteConfig = {
     },
     {
       label: "Наши хвостики",
-      href: "/gallery",
+      href: "/catalog",
     },
     {
       label: "Как помочь?",

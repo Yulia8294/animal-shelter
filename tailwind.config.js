@@ -38,6 +38,9 @@ module.exports = {
           800: "#623f05",
           900: "#311f02",
         },
+        accentPurple: {
+          500: "#966B9D"
+        },
         foreground: "#231d1a",
         background: "#fbfefb",
         warning: "#f49d0c",
@@ -97,6 +100,9 @@ module.exports = {
               700: "#925e07",
               800: "#623f05",
               900: "#311f02",
+            },
+            accentPurple: {
+              500: "#966B9D"
             },
             warning: "#f49d0c",
             foreground: "#231d1a",
