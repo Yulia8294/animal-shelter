@@ -1,4 +1,5 @@
 "use client";
+
 import { PetDetails, PetTrait } from "@/app/models";
 import { PET_TRAITS } from "@/content/pet-traits";
 import { PETS_CATALOG } from "@/content/pets-catalog";
@@ -146,6 +147,4 @@ const PetDetailsView: FC<ComponentProps> = ({ pet = PETS_CATALOG[0] }) => {
 
 export default PetDetailsView;
 
-const gradients = [
-  "gradient-1",
-];
+const gradients = ["gradient-1"];
