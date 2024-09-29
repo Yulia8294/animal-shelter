@@ -6,6 +6,7 @@ import { ThemeProviderProps } from "next-themes/dist/types";
 import { useRouter } from "next/navigation";
 import { PrimeReactProvider } from "primereact/api";
 import * as React from "react";
+import { TailwindComponents } from "./tailwind.components";
 
 export interface ProvidersProps {
   children: React.ReactNode;
@@ -17,7 +18,12 @@ export function Providers({ children, themeProps }: ProvidersProps) {
 
   return (
     <NextUIProvider navigate={router.push}>
-      <PrimeReactProvider >
+      <PrimeReactProvider
+        value={{
+          unstyled: true,
+          pt: TailwindComponents,
+        }}
+      >
         <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
       </PrimeReactProvider>
     </NextUIProvider>
