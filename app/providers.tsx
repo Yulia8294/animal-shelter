@@ -20,7 +20,7 @@ export function Providers({ children, themeProps }: ProvidersProps) {
     <NextUIProvider navigate={router.push}>
       <PrimeReactProvider
         value={{
-          unstyled: true,
+          unstyled: false,
           pt: TailwindComponents,
         }}
       >

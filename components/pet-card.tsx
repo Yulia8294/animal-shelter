@@ -1,24 +1,54 @@
+"use client";
+
+import { PetDetails } from "@/app/models";
+import animationData from "@/public/assets/animations/heart.json";
 import { Button } from "@nextui-org/button";
 import { Card, CardFooter } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
-import { FC } from "react";
-
-import { PetDetails } from "@/app/models";
+import Lottie from "lottie-react";
 import Link from "next/link";
-import { HeartIcon } from "./icons";
+import { FC, useEffect, useRef, useState } from "react";
 
 interface ComponentProps {
   data: PetDetails;
+  hoverEffect?: boolean;
+  detailsOnClick?: boolean;
+  showFavoriteIcon?: boolean;
 }
 
-export const PetCard: FC<ComponentProps> = ({ data }) => {
+export const PetCard: FC<ComponentProps> = ({
+  data,
+  hoverEffect = true,
+  detailsOnClick = true,
+  showFavoriteIcon = true,
+}) => {
+  const [isLiked, setIsLiked] = useState<boolean>(true);
+  const animation = useRef<any>(null);
+
+  useEffect(() => {
+    if (animation.current) {
+      const initialFrame = isLiked ? 75 : 129;
+
+      animation.current.goToAndStop(initialFrame, true);
+    }
+  }, []);
+
+  const handleLikeDislike = () => {
+    if (isLiked) {
+      animation.current?.goToAndPlay(76, true);
+    } else {
+      animation.current?.goToAndPlay(1, true);
+    }
+    setIsLiked((prev) => !prev);
+  };
+
   return (
     <Card
       as={Link}
       href={"/catalog/" + data.id}
       isFooterBlurred
       radius="md"
-      className="rotate-0 scale-1 hover:rotate-2 hover:scale-[1.12] hover:z-10 cursor-pointer aspect-[3/4]"
+      className={`rotate-0 scale-1 ${hoverEffect ? "hover:rotate-2 hover:scale-[1.12] hover:z-10" : ""} ${detailsOnClick ? "cursor-pointer" : "pointer-events-none"} aspect-[3/4]`}
     >
       <Image
         removeWrapper
@@ -36,14 +66,24 @@ export const PetCard: FC<ComponentProps> = ({ data }) => {
                 {data.age} лет
               </div>
             </div>
-
-            <Button className="bg-transparent" isIconOnly aria-label="Like">
-              <HeartIcon
-                fill="none"
-                strokeWidth={3}
-                className="stroke-accentYellow-400"
-              />
-            </Button>
+            {showFavoriteIcon && (
+              <Button
+                className="bg-transparent"
+                isIconOnly
+                aria-label="Like"
+                onClick={(event) => {
+                  event.preventDefault();
+                  handleLikeDislike();
+                }}
+              >
+                <Lottie
+                  lottieRef={animation}
+                  loop={false}
+                  autoplay={false}
+                  animationData={animationData}
+                />
+              </Button>
+            )}
           </div>
         </div>
       </CardFooter>

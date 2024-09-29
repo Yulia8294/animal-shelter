@@ -1,3 +1,5 @@
+"use client";
+
 import { HeartFilledIcon, PawIcon } from "@/components/icons";
 import { PetCard } from "@/components/pet-card";
 import Section from "@/components/section";
@@ -8,16 +10,11 @@ import { Card, CardBody, CardFooter } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
 import { Link } from "@nextui-org/link";
 import "./styles.scss";
+import { Carousel } from "primereact/carousel";
+import React from "react";
+import { PetDetails } from "./models";
 
 export default function Home() {
-  const dogCardsView = (
-    <>
-      {PETS_CATALOG.map((dog, index) => (
-        <PetCard key={index} data={dog} />
-      ))}
-    </>
-  );
-
   return (
     <div className="flex flex-col gap-16 items-center">
       <Section classOverrides="py-9">
@@ -26,7 +23,6 @@ export default function Home() {
             removeWrapper
             src="/assets/back.svg"
             className="w-full h-[80vh] object-cover z-0"
-            transparent-overlay
           />
 
           <div className="text-left z-10 absolute bottom-0 left-0 flex flex-col items-start justify-start gap-2 p-10">
@@ -64,7 +60,11 @@ export default function Home() {
             </Button>
           </div>
 
-          <div className="flex gap-8 overflow-visible">{dogCardsView}</div>
+          <div className="grid grid-cols-3 gap-4">
+            {PETS_CATALOG.map((pet) => (
+              <PetCard key={pet.id} data={pet} />
+            ))}
+          </div>
         </div>
       </Section>
 
@@ -165,7 +165,27 @@ export default function Home() {
           Нашли дом
         </h1>
 
-        <div className="flex gap-8 overflow-visible">{dogCardsView}</div>
+        <div className="flex gap-8 overflow-visible">
+          <Carousel
+            value={[...PETS_CATALOG, ...PETS_CATALOG, ...PETS_CATALOG]}
+            circular
+            numVisible={4}
+            numScroll={1}
+            showNavigators={false}
+            autoplayInterval={3000}
+            showIndicators={false}
+            itemTemplate={(item: PetDetails) => (
+              <div className="p-5">
+                <PetCard
+                  detailsOnClick={false}
+                  hoverEffect={false}
+                  data={item}
+                  showFavoriteIcon={false}
+                />
+              </div>
+            )}
+          />
+        </div>
       </Section>
     </div>
   );
