@@ -1,6 +1,6 @@
 "use client";
 
-import { PetDetails, PetTrait } from "@/app/models";
+import { PetTrait } from "@/app/models";
 import { PET_TRAITS } from "@/content/pet-traits";
 import { PETS_CATALOG } from "@/content/pets-catalog";
 import { Button } from "@nextui-org/button";
@@ -8,14 +8,13 @@ import { Chip } from "@nextui-org/chip";
 import _ from "lodash";
 import Link from "next/link";
 import { Galleria } from "primereact/galleria";
-import { FC, useMemo, useRef } from "react";
+import { useMemo, useRef } from "react";
 
-interface ComponentProps {
-  pet: PetDetails;
-}
+const gradients = ["gradient-1"];
 
-const PetDetailsView: FC<ComponentProps> = ({ pet = PETS_CATALOG[0] }) => {
-  const galleria = useRef(null);
+const PetDetailsView = () => {
+  const galleria = useRef<any>(null);
+  const pet = PETS_CATALOG[0];
 
   const responsiveOptions = [
     {
@@ -146,5 +145,3 @@ const PetDetailsView: FC<ComponentProps> = ({ pet = PETS_CATALOG[0] }) => {
 };
 
 export default PetDetailsView;
-
-const gradients = ["gradient-1"];
