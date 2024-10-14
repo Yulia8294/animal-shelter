@@ -36,7 +36,7 @@ export const siteConfig = {
     },
   ],
   links: {
-    insta: "https://github.com/nextui-org/nextui",
+    insta: "https://www.instagram.com/doghopeorg/",
     donate: "",
   },
 };

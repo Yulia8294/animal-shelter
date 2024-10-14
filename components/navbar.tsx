@@ -1,4 +1,8 @@
 "use client";
+
+import { GithubIcon, HeartFilledIcon, Logo } from "@/components/icons";
+import { ThemeSwitch } from "@/components/theme-switch";
+import { siteConfig } from "@/config/site";
 import { Button } from "@nextui-org/button";
 import { Link } from "@nextui-org/link";
 import {
@@ -14,10 +18,6 @@ import { link as linkStyles } from "@nextui-org/theme";
 import clsx from "clsx";
 import NextLink from "next/link";
 import { useState } from "react";
-
-import { GithubIcon, HeartFilledIcon, Logo } from "@/components/icons";
-import { ThemeSwitch } from "@/components/theme-switch";
-import { siteConfig } from "@/config/site";
 
 export const Navbar = () => {
   const [isNavbarColored, setIsNavbarColored] = useState<boolean>(false);
@@ -61,19 +61,19 @@ export const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent>
-        <NavbarItem className="hidden sm:flex gap-2">
+        {/* <NavbarItem className="hidden sm:flex gap-2">
           <ThemeSwitch />
-        </NavbarItem>
+        </NavbarItem> */}
         <NavbarItem className="hidden md:flex">
           <Button
             isExternal
             as={Link}
-            className="text-md rounded-full font-normal text-white bg-accentYellow-500"
-            href={siteConfig.links.donate}
+            className="text-md font-normal text-white bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045]"
+            href={siteConfig.links.insta}
             startContent={<HeartFilledIcon className="text-white" />}
             variant="flat"
           >
-            Помочь
+            Наш Instagram
           </Button>
         </NavbarItem>
       </NavbarContent>
