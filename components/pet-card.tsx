@@ -24,7 +24,7 @@ export const PetCard: FC<ComponentProps> = ({
   showFavoriteIcon = true,
 }) => {
   const [isLiked, setIsLiked] = useState<boolean>(false);
-  const [favorites, setFavorites] = useLocalStorage<string[]>("favorites", []);
+  // const [favorites, setFavorites] = useLocalStorage<string[]>("favorites", []);
 
   const animation = useRef<any>(null);
 
