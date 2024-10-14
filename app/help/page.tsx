@@ -40,7 +40,6 @@ const Help = () => {
 
           <Button
             className="group-hover:animate-bounce px-12 py-8 mt-5 text-md rounded-full font-semibold text-white bg-accentYellow-500 self-center"
-            href={"/catalog"}
             variant="flat"
             size="lg"
           >
@@ -61,7 +60,6 @@ const Help = () => {
 
           <Button
             className="group-hover:animate-bounce px-12 py-8 mt-5 text-md rounded-full font-semibold text-white bg-accentPurple-500 self-center"
-            href={"/catalog"}
             variant="flat"
             size="lg"
           >
@@ -82,7 +80,6 @@ const Help = () => {
 
           <Button
             className="group-hover:animate-bounce px-12 py-8 mt-5 text-md rounded-full font-semibold text-white bg-accentYellow-500 self-center"
-            href={"/catalog"}
             variant="flat"
             size="lg"
           >

@@ -5,6 +5,7 @@ import animationData from "@/public/assets/animations/heart.json";
 import { Button } from "@nextui-org/button";
 import { Card, CardFooter } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
+import { useLocalStorage } from "@uidotdev/usehooks";
 import Lottie from "lottie-react";
 import Link from "next/link";
 import { FC, useEffect, useRef, useState } from "react";
@@ -22,14 +23,18 @@ export const PetCard: FC<ComponentProps> = ({
   detailsOnClick = true,
   showFavoriteIcon = true,
 }) => {
-  const [isLiked, setIsLiked] = useState<boolean>(true);
+  const [isLiked, setIsLiked] = useState<boolean>(false);
+  const [favorites, setFavorites] = useLocalStorage<string[]>("favorites", []);
+
   const animation = useRef<any>(null);
 
   useEffect(() => {
-    if (animation.current) {
-      const initialFrame = isLiked ? 75 : 129;
+    if (showFavoriteIcon) {
+      if (animation.current) {
+        const initialFrame = isLiked ? 75 : 129;
 
-      animation.current.goToAndStop(initialFrame, true);
+        animation.current.goToAndStop(initialFrame, true);
+      }
     }
   }, []);
 

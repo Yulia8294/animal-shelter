@@ -10,6 +10,7 @@ import { Card, CardBody, CardFooter } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
 import { Link } from "@nextui-org/link";
 import "./styles.scss";
+import { ClientOnly } from "@/components/client-only";
 import { Carousel } from "primereact/carousel";
 import React from "react";
 import { PetDetails } from "./models";
@@ -60,14 +61,16 @@ export default function Home() {
 
           <div className="grid grid-cols-3 gap-4">
             {PETS_CATALOG.map((pet) => (
-              <PetCard key={pet.id} data={pet} />
+              <ClientOnly key={pet.id}>
+                <PetCard data={pet} />
+              </ClientOnly>
             ))}
           </div>
         </div>
       </Section>
 
-      <Section classOverrides="bg-[url(/assets/bg-blob.svg)] relative">
-        <div className="grid grid-cols-2">
+      <Section classOverrides="bg-[url(/assets/bg-blob.svg)] relative w-full">
+        <div className="grid grid-cols-2 container">
           <div />
           <Card isBlurred className="bg-background/50 rounded-3xl">
             <CardBody>
@@ -87,18 +90,18 @@ export default function Home() {
           width={500}
           height={500}
           src="assets/dog.png"
-          className="scale-x-[-1] absolute bottom-0 left-0"
+          className="scale-x-[-1] absolute bottom-0 left-0 ml-[-2.6rem] mb-[-5rem]"
         />
       </Section>
 
       <Section classOverrides="container">
-        <div className="grid grid-cols-3 gap-10 items-center justify-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 items-center justify-center">
           {helpItems.map((item, index) => {
             return (
               <Card
                 key={index}
                 isBlurred
-                className="rounded-3xl p-6 cursor-pointer hover:scale-105"
+                className="rounded-3xl p-6 h-full cursor-pointer hover:scale-105"
               >
                 <CardBody>
                   <Image src={item.icon} />
@@ -114,11 +117,12 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section classOverrides="bg-[url(/assets/bg-circle.svg)]">
-        <div className="grid grid-cols-2 gap-8">
+      <Section classOverrides="bg-[url(/assets/bg-circle.svg)] w-full items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 container">
           <Card isBlurred className="bg-white/50 rounded-3xl">
             <CardBody>
               <Image
+                removeWrapper
                 src="assets/bg-5.jpg"
                 className="w-full h-full object-cover aspect-square"
               />

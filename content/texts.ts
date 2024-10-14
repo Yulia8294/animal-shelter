@@ -83,6 +83,11 @@ const HelpPage = {
   },
 };
 
+const CatalogPage = {
+  title: "Все хвостики приюта",
+};
+
 export const AppText = {
   HelpPage,
+  CatalogPage
 };

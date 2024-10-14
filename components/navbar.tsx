@@ -1,6 +1,11 @@
 "use client";
 
-import { GithubIcon, HeartFilledIcon, Logo } from "@/components/icons";
+import {
+  GithubIcon,
+  HeartFilledIcon,
+  HeartIcon,
+  Logo,
+} from "@/components/icons";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { siteConfig } from "@/config/site";
 import { Button } from "@nextui-org/button";
@@ -64,13 +69,25 @@ export const Navbar = () => {
         {/* <NavbarItem className="hidden sm:flex gap-2">
           <ThemeSwitch />
         </NavbarItem> */}
+
+        <NavbarItem>
+          <Button
+            isExternal
+            isIconOnly
+            as={Link}
+            className="bg-accentYellow-50"
+            href={siteConfig.links.insta}
+            variant="shadow"
+          >
+            <HeartIcon className="fill-accentYellow-500" />
+          </Button>
+        </NavbarItem>
         <NavbarItem className="hidden md:flex">
           <Button
             isExternal
             as={Link}
             className="text-md font-normal text-white bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045]"
             href={siteConfig.links.insta}
-            startContent={<HeartFilledIcon className="text-white" />}
             variant="flat"
           >
             Наш Instagram
