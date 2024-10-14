@@ -1,0 +1,13 @@
+.app-list-item {
+    &:nth-child(odd) {
+      svg {
+        @apply odd:fill-accentYellow-500;
+      }
+    }
+
+    &:nth-child(even) {
+      svg {
+        @apply fill-accentPurple-500;
+      }
+    }
+}

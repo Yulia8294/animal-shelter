@@ -45,9 +45,7 @@ export default function Home() {
       <Section classOverrides="container">
         <div>
           <div className="flex justify-between">
-            <h1 className="text-start w-full text-primary-400 font-semibold mb-8">
-              Наши хвостики
-            </h1>
+            <h1 className="page-title">Наши хвостики</h1>
 
             <Button
               as={Link}
@@ -130,7 +128,7 @@ export default function Home() {
           <Card isBlurred className="bg-white/50 rounded-3xl">
             <CardBody className="p-10 flex flex-col justify-between">
               <div>
-                <h1 className="font-bold">Как помочь?</h1>
+                <h1 className="page-title">Как помочь?</h1>
                 <p className="text-primary-500/80 mb-10">
                   Помоги хвостикам любым удобным способом
                 </p>
@@ -161,9 +159,7 @@ export default function Home() {
       </Section>
 
       <Section classOverrides="container">
-        <h1 className="text-start w-full text-primary-400 font-semibold mb-8">
-          Нашли дом
-        </h1>
+        <h1 className="page-title">Нашли дом</h1>
 
         <div className="flex gap-8 overflow-visible">
           <Carousel

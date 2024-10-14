@@ -24,6 +24,9 @@ module.exports = {
         mono: ["var(--font-mono)"],
       },
       colors: {
+        offWhite: {
+          500: "#F5F5F5"
+        },
         accentGreen: {
           50: "#e9edeb",
           100: "#d3dcd6",
@@ -87,6 +90,9 @@ module.exports = {
       themes: {
         light: {
           colors: {
+            offWhite: {
+              500: "#F5F5F5"
+            },
             accentGreen: {
               50: "#e9edeb",
               100: "#d3dcd6",
