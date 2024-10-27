@@ -2,7 +2,6 @@
 
 import {
   GithubIcon,
-  HeartFilledIcon,
   HeartIcon,
   Logo,
 } from "@/components/icons";
@@ -19,16 +18,19 @@ import {
   NavbarMenuToggle,
   Navbar as NextUINavbar,
 } from "@nextui-org/navbar";
-import { link as linkStyles } from "@nextui-org/theme";
-import clsx from "clsx";
 import NextLink from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 export const Navbar = () => {
   const [isNavbarColored, setIsNavbarColored] = useState<boolean>(false);
+  const pathname = usePathname();
 
   return (
     <NextUINavbar
+      classNames={{
+        item: ["navbar-item"],
+      }}
       maxWidth="full"
       position="sticky"
       isBlurred={true}
@@ -47,19 +49,10 @@ export const Navbar = () => {
       </NavbarBrand>
 
       <NavbarContent className="basis-1/5 sm:basis-full" justify="center">
-        <ul className="hidden lg:flex gap-4 items-center ml-2">
+        <ul className="hidden lg:flex items-center ml-2">
           {siteConfig.navItems.map((item) => (
-            <NavbarItem key={item.href}>
-              <NextLink
-                className={clsx(
-                  linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium",
-                )}
-                color="foreground"
-                href={item.href}
-              >
-                {item.label}
-              </NextLink>
+            <NavbarItem isActive={pathname === item.href} key={item.href}>
+              <NextLink href={item.href}>{item.label}</NextLink>
             </NavbarItem>
           ))}
         </ul>
@@ -70,7 +63,7 @@ export const Navbar = () => {
           <ThemeSwitch />
         </NavbarItem> */}
 
-        <NavbarItem>
+        {/* <NavbarItem>
           <Button
             isExternal
             isIconOnly
@@ -81,7 +74,7 @@ export const Navbar = () => {
           >
             <HeartIcon className="fill-accentYellow-500" />
           </Button>
-        </NavbarItem>
+        </NavbarItem> */}
         <NavbarItem className="hidden md:flex">
           <Button
             isExternal

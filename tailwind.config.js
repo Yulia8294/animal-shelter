@@ -1,4 +1,4 @@
-import { nextui } from "@nextui-org/theme";
+import { button, nextui } from "@nextui-org/theme";
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {

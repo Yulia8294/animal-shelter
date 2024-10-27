@@ -4,7 +4,7 @@ import { HeartFilledIcon, PawIcon } from "@/components/icons";
 import { PetCard } from "@/components/pet-card";
 import Section from "@/components/section";
 import { PETS_CATALOG } from "@/content/pets-catalog";
-import { helpItems, helpOptions } from "@/content/texts";
+import { AppText, helpItems, helpOptions } from "@/content/texts";
 import { Button } from "@nextui-org/button";
 import { Card, CardBody, CardFooter } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
@@ -16,6 +16,8 @@ import React from "react";
 import { PetDetails } from "./models";
 
 export default function Home() {
+  const content = AppText.MainPage;
+
   return (
     <div className="flex flex-col gap-16 items-center">
       <Section classOverrides="py-9">
@@ -26,18 +28,18 @@ export default function Home() {
             className="w-full h-[80vh] object-cover z-0"
           />
 
-          <div className="text-left z-10 absolute bottom-0 left-0 flex flex-col items-start justify-start gap-2 p-10">
-            <h2 className="text-white font-semibold">Дом Собачьей Надежды</h2>
-            <p className="text-white/80">Каждый хвостик заслуживает свой дом</p>
+          <div className="text-center z-10 absolute bottom-0 left-0 right-0 top-0 flex flex-col items-center justify-end gap-2 p-10">
+            <h1 className="text-white font-semibold">{content.title}</h1>
+            <h4 className="text-white/90">{content.subtitle}</h4>
             <Button
               as={Link}
-              className="px-12 py-8 mt-5 text-md rounded-full font-semibold text-white bg-accentYellow-500"
+              className="px-16 py-10 mt-5 text-lg rounded-full font-semibold text-white bg-accentYellow-500"
               href={"/catalog"}
               startContent={<PawIcon fill="white" />}
               variant="flat"
               size="lg"
             >
-              Найти друга!
+              {content.actionBtn}
             </Button>
           </div>
         </div>
@@ -46,7 +48,7 @@ export default function Home() {
       <Section classOverrides="container">
         <div>
           <div className="flex justify-between">
-            <h1 className="page-title">Наши хвостики</h1>
+            <h1 className="page-title">{content.dogsGallery.title}</h1>
 
             <Button
               as={Link}
@@ -55,16 +57,18 @@ export default function Home() {
               variant="flat"
               size="lg"
             >
-              Смотреть всех
+              {content.dogsGallery.actionBtn}
             </Button>
           </div>
 
           <div className="grid grid-cols-3 gap-4">
-            {PETS_CATALOG.map((pet) => (
-              <ClientOnly key={pet.id}>
-                <PetCard data={pet} />
-              </ClientOnly>
-            ))}
+            {PETS_CATALOG.map((pet) => {
+              return (
+                <ClientOnly key={pet.id}>
+                  <PetCard data={pet} />
+                </ClientOnly>
+              );
+            })}
           </div>
         </div>
       </Section>
@@ -72,16 +76,12 @@ export default function Home() {
       <Section classOverrides="bg-[url(/assets/bg-blob.svg)] relative w-full">
         <div className="grid grid-cols-2 container">
           <div />
-          <Card isBlurred className="bg-background/50 rounded-3xl">
+          <Card isBlurred className="bg-background/60 rounded-3xl">
             <CardBody>
-              <p className="text-primary-500/80 text-left text-2xl py-20 px-6">
-                Приют Дом собачьей надежды - частный, негосударственный приют. В
-                нашем приюте потерявшиеся, брошенные собаки получают шанс и
-                надежду обрести семью и новый дом. <br /> <br /> Покупка кормов,
-                лечение и уход за животными происходит за счёт материальных и
-                финансовых пожертвований неравнодушных людей, подписчиков и
-                волонтёров.
-              </p>
+              <p
+                dangerouslySetInnerHTML={{ __html: content.about.description }}
+                className="text-primary-500/80 text-left text-3xl py-20 px-6"
+              />
             </CardBody>
           </Card>
         </div>
@@ -119,7 +119,7 @@ export default function Home() {
 
       <Section classOverrides="bg-[url(/assets/bg-circle.svg)] w-full items-center">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 container">
-          <Card isBlurred className="bg-white/50 rounded-3xl">
+          <Card isBlurred className="bg-white/60 rounded-3xl">
             <CardBody>
               <Image
                 removeWrapper
@@ -129,33 +129,38 @@ export default function Home() {
             </CardBody>
           </Card>
 
-          <Card isBlurred className="bg-white/50 rounded-3xl">
-            <CardBody className="p-10 flex flex-col justify-between">
+          <Card isBlurred className="bg-white/60 rounded-3xl">
+            <CardBody className="p-8 flex flex-col justify-between">
               <div>
-                <h1 className="page-title">Как помочь?</h1>
-                <p className="text-primary-500/80 mb-10">
-                  Помоги хвостикам любым удобным способом
-                </p>
+                <h1 className="page-title">{content.help.title}</h1>
+                <h4 className="text-primary-500/80 mb-8">
+                  {content.help.subtitle}
+                </h4>
               </div>
 
               <div className="flex flex-col gap-7">
                 {helpOptions.map((option, index) => (
-                  <li key={index} className={`flex gap-2 list-none`}>
+                  <li
+                    key={index}
+                    className={`flex gap-2 list-none app-list-item`}
+                  >
                     <PawIcon />
-                    <div className="text-xl">{option}</div>
+                    <div className="text-primary-400 text-2xl font-semibold">
+                      {option}
+                    </div>
                   </li>
                 ))}
               </div>
 
               <Button
                 as={Link}
-                className="self-start px-12 py-8 mt-5 text-md rounded-full font-semibold text-white bg-accentPurple-500"
+                className="self-start px-12 py-8 mt-5 text-xl rounded-full font-semibold text-white bg-accentPurple-500"
                 href={"/help"}
                 endContent={<HeartFilledIcon fill="white" />}
                 variant="flat"
                 size="lg"
               >
-                Узнать больше
+                {content.help.actionBtn}
               </Button>
             </CardBody>
           </Card>
@@ -163,7 +168,7 @@ export default function Home() {
       </Section>
 
       <Section classOverrides="container">
-        <h1 className="page-title">Нашли дом</h1>
+        <h1 className="page-title">{content.foundHome.title}</h1>
 
         <div className="flex gap-8 overflow-visible">
           <Carousel
