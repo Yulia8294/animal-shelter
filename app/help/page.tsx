@@ -1,12 +1,26 @@
+"use client";
+
 import { PawIcon } from "@/components/icons";
 import Section from "@/components/section";
 import { AppText } from "@/content/texts";
 import "./page.scss";
+import ContactDialog, { ContactDialogData } from "@/components/contact-dialog";
 import { Button } from "@nextui-org/button";
 import { Image } from "@nextui-org/image";
+import { useState } from "react";
 
 const Help = () => {
   const pageContent = AppText.HelpPage;
+
+  const [contactDialog, setContactDialog] = useState<ContactDialogData>({
+    isOpen: false,
+  });
+
+  const closeContactDialog = () => {
+    setContactDialog({
+      isOpen: false,
+    });
+  };
 
   const listItems = (items: string[]) => (
     <div className="flex flex-col gap-5">
@@ -42,6 +56,12 @@ const Help = () => {
             className="group-hover:animate-bounce px-12 py-8 mt-5 text-md rounded-full font-semibold text-white bg-accentYellow-500 self-center"
             variant="flat"
             size="lg"
+            onClick={() =>
+              setContactDialog({
+                isOpen: true,
+                onClose: closeContactDialog,
+              })
+            }
           >
             {pageContent.volunteer.contactBtn}
           </Button>
@@ -62,6 +82,12 @@ const Help = () => {
             className="group-hover:animate-bounce px-12 py-8 mt-5 text-md rounded-full font-semibold text-white bg-accentPurple-500 self-center"
             variant="flat"
             size="lg"
+            onClick={() =>
+              setContactDialog({
+                isOpen: true,
+                onClose: closeContactDialog,
+              })
+            }
           >
             {pageContent.items.contactBtn}
           </Button>
@@ -82,11 +108,21 @@ const Help = () => {
             className="group-hover:animate-bounce px-12 py-8 mt-5 text-md rounded-full font-semibold text-white bg-accentYellow-500 self-center"
             variant="flat"
             size="lg"
+            onClick={() =>
+              setContactDialog({
+                isOpen: true,
+                onClose: closeContactDialog,
+                textareaDescription:
+                  pageContent.donate.contactDialogTextAreaDescription,
+              })
+            }
           >
             {pageContent.donate.contactBtn}
           </Button>
         </div>
       </Section>
+
+      <ContactDialog {...contactDialog} />
     </div>
   );
 };

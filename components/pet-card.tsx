@@ -46,7 +46,7 @@ export const PetCard: FC<ComponentProps> = ({
     <Card
       as={Link}
       isFooterBlurred
-      href={"/catalog/" + data.id}
+      href={"/catalog/" + data.slug}
       radius="md"
       className={`rotate-0 scale-1 ${hoverEffect ? "hover:rotate-2 hover:scale-[1.12] hover:z-10" : ""} ${detailsOnClick ? "cursor-pointer" : "pointer-events-none"} aspect-[3/4]`}
     >

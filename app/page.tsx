@@ -1,9 +1,6 @@
-"use client";
-
 import { HeartFilledIcon, PawIcon } from "@/components/icons";
 import { PetCard } from "@/components/pet-card";
 import Section from "@/components/section";
-import { PETS_CATALOG } from "@/content/pets-catalog";
 import { AppText, helpItems, helpOptions } from "@/content/texts";
 import { Button } from "@nextui-org/button";
 import { Card, CardBody, CardFooter } from "@nextui-org/card";
@@ -11,12 +8,13 @@ import { Image } from "@nextui-org/image";
 import { Link } from "@nextui-org/link";
 import "./styles.scss";
 import { ClientOnly } from "@/components/client-only";
-import { Carousel } from "primereact/carousel";
-import React from "react";
-import { PetDetails } from "./models";
+import PetsCarousel from "@/components/pets-carousel";
+import { fetchDogs } from "@/repository/api";
+import React, { FC } from "react";
 
-export default function Home() {
+const Home: FC = async () => {
   const content = AppText.MainPage;
+  const catalog = await fetchDogs();
 
   return (
     <div className="flex flex-col gap-16 items-center">
@@ -62,7 +60,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-3 gap-4">
-            {PETS_CATALOG.map((pet) => {
+            {catalog.map((pet) => {
               return (
                 <ClientOnly key={pet.id}>
                   <PetCard data={pet} />
@@ -171,27 +169,11 @@ export default function Home() {
         <h1 className="page-title">{content.foundHome.title}</h1>
 
         <div className="flex gap-8 overflow-visible">
-          <Carousel
-            value={[...PETS_CATALOG, ...PETS_CATALOG, ...PETS_CATALOG]}
-            circular
-            numVisible={4}
-            numScroll={1}
-            showNavigators={false}
-            autoplayInterval={3000}
-            showIndicators={false}
-            itemTemplate={(item: PetDetails) => (
-              <div className="p-5">
-                <PetCard
-                  detailsOnClick={false}
-                  hoverEffect={false}
-                  data={item}
-                  showFavoriteIcon={false}
-                />
-              </div>
-            )}
-          />
+          <PetsCarousel items={catalog} />
         </div>
       </Section>
     </div>
   );
-}
+};
+
+export default Home;

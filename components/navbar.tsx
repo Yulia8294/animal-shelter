@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  GithubIcon,
-  HeartIcon,
-  Logo,
-} from "@/components/icons";
+import { GithubIcon, Logo } from "@/components/icons";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { siteConfig } from "@/config/site";
 import { Button } from "@nextui-org/button";

@@ -1,13 +1,15 @@
 export interface PetDetails {
   id: string;
+  slug: string;
   name: string;
-  mainImage: string;
+  mainImage?: string;
   gender: string;
   age: number;
-  traitsIds: string[];
+  traits?: string;
+  traitsArray: string[];
   story?: string;
   media?: string;
-  images: string[];
+  images?: string[];
 }
 
 export interface PetTrait {
