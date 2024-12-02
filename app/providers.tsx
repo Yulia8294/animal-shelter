@@ -6,6 +6,7 @@ import { ThemeProviderProps } from "next-themes/dist/types";
 import { useRouter } from "next/navigation";
 import { PrimeReactProvider } from "primereact/api";
 import * as React from "react";
+
 import { TailwindComponents } from "./tailwind.components";
 
 export interface ProvidersProps {

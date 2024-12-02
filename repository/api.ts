@@ -24,10 +24,8 @@ export async function fetchDogs(): Promise<PetDetails[]> {
 
         pet.images = imageUrls; // Assign the URLs to the pet's `images` property
         pet.mainImage = imageUrls[0];
-        console.log("Fetched success", imageResponse.json());
       } catch (error) {
         pet.images = [];
-        console.error(`Error fetching images for ${pet.slug}`);
       }
     }),
   );

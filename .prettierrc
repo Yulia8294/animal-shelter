@@ -4,10 +4,7 @@
   "trailingComma": "all",
   "singleQuote": false,
   "semi": true,
-  "importOrderParserPlugins": ["typescript", "jsx", "decorators-legacy"],
-  "importOrderTypeScriptVersion": "5.0.0",
-  "plugins": [
-    "prettier-plugin-tailwindcss",
-    "@ianvs/prettier-plugin-sort-imports"
-  ]
+  "plugins": ["prettier-plugin-tailwindcss", "prettier-plugin-sort-imports"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }

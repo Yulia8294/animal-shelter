@@ -26,11 +26,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     // Read the files in the folder (this will only work at build-time, not runtime)
     const files = fs.readdirSync(folderPath);
 
-    // Filter out the files that don't end with ".png"
-    const imageFiles = files.filter((file) => file.endsWith(".png"));
-
     // Construct the URLs for each image (e.g., /media/eva/eva1.png)
-    const imageUrls = imageFiles.map(
+    const imageUrls = files.map(
       (file) => `${process.env.URL}/assets/media/${slug}/${file}`,
     );
 

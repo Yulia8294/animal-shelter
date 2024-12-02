@@ -1,15 +1,13 @@
+import { ClientOnly } from "@/components/client-only";
 import { HeartFilledIcon, PawIcon } from "@/components/icons";
 import { PetCard } from "@/components/pet-card";
 import Section from "@/components/section";
 import { AppText, helpItems, helpOptions } from "@/content/texts";
+import { fetchDogs } from "@/repository/api";
 import { Button } from "@nextui-org/button";
 import { Card, CardBody, CardFooter } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
 import { Link } from "@nextui-org/link";
-import "./styles.scss";
-import { ClientOnly } from "@/components/client-only";
-import PetsCarousel from "@/components/pets-carousel";
-import { fetchDogs } from "@/repository/api";
 import React, { FC } from "react";
 
 const Home: FC = async () => {
@@ -17,21 +15,21 @@ const Home: FC = async () => {
   const catalog = await fetchDogs();
 
   return (
-    <div className="flex flex-col gap-16 items-center">
+    <div className="flex flex-col items-center gap-16">
       <Section classOverrides="py-9">
-        <div className="w-full rounded-2xl relative transparent-overlay">
+        <div className="transparent-overlay relative w-full rounded-2xl">
           <Image
             removeWrapper
             src="/assets/back.svg"
-            className="w-full h-[80vh] object-cover z-0"
+            className="z-0 h-[80vh] w-full object-cover"
           />
 
-          <div className="text-center z-10 absolute bottom-0 left-0 right-0 top-0 flex flex-col items-center justify-end gap-2 p-10">
-            <h1 className="text-white font-semibold">{content.title}</h1>
+          <div className="absolute bottom-0 left-0 right-0 top-0 z-10 flex flex-col items-center justify-end gap-2 p-10 text-center">
+            <h1 className="font-semibold text-white">{content.title}</h1>
             <h4 className="text-white/90">{content.subtitle}</h4>
             <Button
               as={Link}
-              className="px-16 py-10 mt-5 text-lg rounded-full font-semibold text-white bg-accentYellow-500"
+              className="mt-5 rounded-full bg-accentYellow-500 px-16 py-10 text-lg font-semibold text-white"
               href={"/catalog"}
               startContent={<PawIcon fill="white" />}
               variant="flat"
@@ -50,7 +48,7 @@ const Home: FC = async () => {
 
             <Button
               as={Link}
-              className="px-12 py-8 mt-5 text-md rounded-full font-semibold text-white bg-accentPurple-500"
+              className="text-md mt-5 rounded-full bg-accentPurple-500 px-12 py-8 font-semibold text-white"
               href={"/catalog"}
               variant="flat"
               size="lg"
@@ -72,13 +70,13 @@ const Home: FC = async () => {
       </Section>
 
       <Section classOverrides="bg-[url(/assets/bg-blob.svg)] relative w-full">
-        <div className="grid grid-cols-2 container">
+        <div className="container grid grid-cols-2">
           <div />
-          <Card isBlurred className="bg-background/60 rounded-3xl">
+          <Card isBlurred className="rounded-3xl bg-background/60">
             <CardBody>
               <p
                 dangerouslySetInnerHTML={{ __html: content.about.description }}
-                className="text-primary-500/80 text-left text-3xl py-20 px-6"
+                className="px-6 py-20 text-left text-3xl text-primary-500/80"
               />
             </CardBody>
           </Card>
@@ -88,18 +86,18 @@ const Home: FC = async () => {
           width={500}
           height={500}
           src="assets/dog.png"
-          className="scale-x-[-1] absolute bottom-0 left-0 ml-[-2.6rem] mb-[-5rem]"
+          className="absolute bottom-0 left-0 mb-[-5rem] ml-[-2.6rem] scale-x-[-1]"
         />
       </Section>
 
       <Section classOverrides="container">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 items-center justify-center">
+        <div className="grid grid-cols-1 items-center justify-center gap-10 md:grid-cols-2 lg:grid-cols-3">
           {helpItems.map((item, index) => {
             return (
               <Card
                 key={index}
                 isBlurred
-                className="rounded-3xl p-6 h-full cursor-pointer hover:scale-105"
+                className="h-full cursor-pointer rounded-3xl p-6 hover:scale-105"
               >
                 <CardBody>
                   <Image src={item.icon} />
@@ -116,22 +114,22 @@ const Home: FC = async () => {
       </Section>
 
       <Section classOverrides="bg-[url(/assets/bg-circle.svg)] w-full items-center">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 container">
-          <Card isBlurred className="bg-white/60 rounded-3xl">
+        <div className="container grid grid-cols-1 gap-8 lg:grid-cols-2">
+          <Card isBlurred className="rounded-3xl bg-white/60">
             <CardBody>
               <Image
                 removeWrapper
                 src="assets/bg-5.jpg"
-                className="w-full h-full object-cover aspect-square"
+                className="aspect-square h-full w-full object-cover"
               />
             </CardBody>
           </Card>
 
-          <Card isBlurred className="bg-white/60 rounded-3xl">
-            <CardBody className="p-8 flex flex-col justify-between">
+          <Card isBlurred className="rounded-3xl bg-white/60">
+            <CardBody className="flex flex-col justify-between p-8">
               <div>
                 <h1 className="page-title">{content.help.title}</h1>
-                <h4 className="text-primary-500/80 mb-8">
+                <h4 className="mb-8 text-primary-500/80">
                   {content.help.subtitle}
                 </h4>
               </div>
@@ -140,10 +138,10 @@ const Home: FC = async () => {
                 {helpOptions.map((option, index) => (
                   <li
                     key={index}
-                    className={`flex gap-2 list-none app-list-item`}
+                    className={`app-list-item flex list-none gap-2`}
                   >
                     <PawIcon />
-                    <div className="text-primary-400 text-2xl font-semibold">
+                    <div className="text-2xl font-semibold text-primary-400">
                       {option}
                     </div>
                   </li>
@@ -152,7 +150,7 @@ const Home: FC = async () => {
 
               <Button
                 as={Link}
-                className="self-start px-12 py-8 mt-5 text-xl rounded-full font-semibold text-white bg-accentPurple-500"
+                className="mt-5 self-start rounded-full bg-accentPurple-500 px-12 py-8 text-xl font-semibold text-white"
                 href={"/help"}
                 endContent={<HeartFilledIcon fill="white" />}
                 variant="flat"
@@ -165,13 +163,13 @@ const Home: FC = async () => {
         </div>
       </Section>
 
-      <Section classOverrides="container">
+      {/* <Section classOverrides="container">
         <h1 className="page-title">{content.foundHome.title}</h1>
 
         <div className="flex gap-8 overflow-visible">
           <PetsCarousel items={catalog} />
         </div>
-      </Section>
+      </Section> */}
     </div>
   );
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import { PetDetails, PetTrait } from "@/app/models";
+import { PetDetails, PetTrait, titleForGender } from "@/app/models";
 import ContactDialog, { ContactDialogData } from "@/components/contact-dialog";
 import { PET_TRAITS } from "@/content/pet-traits";
 import { Button } from "@nextui-org/button";
@@ -93,7 +93,7 @@ const PetDetailsView: FC<ComponentProps> = ({ pet }) => {
       <div>
         <h1 className="font-semibold">{pet.name}</h1>
         <h4>
-          {pet.gender}, {pet.age}
+          {titleForGender[pet.gender]}, {pet.age}
         </h4>
 
         <div className="flex flex-row flex-wrap gap-2 mt-6">

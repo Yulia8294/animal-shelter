@@ -1,7 +1,6 @@
 "use client";
 
-import { GithubIcon, Logo } from "@/components/icons";
-import { ThemeSwitch } from "@/components/theme-switch";
+import { Logo } from "@/components/icons";
 import { siteConfig } from "@/config/site";
 import { Button } from "@nextui-org/button";
 import { Link } from "@nextui-org/link";
@@ -35,7 +34,7 @@ export const Navbar = () => {
         setIsNavbarColored(scrollPosition > 0);
       }}
       className="drop-shadow-lg bg-background"
-      // className={`drop-shadow-lg ${isNavbarColored ? "bg-background/70" : "bg-transparent"} transition delay-0 duration-300`}
+    // className={`drop-shadow-lg ${isNavbarColored ? "bg-background/70" : "bg-transparent"} transition delay-0 duration-300`}
     >
       <NavbarBrand as="li" className="gap-3 max-w-fit">
         <NextLink className="flex justify-start items-center gap-1" href="/">
@@ -85,10 +84,7 @@ export const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-        <Link isExternal aria-label="Github" href={siteConfig.links.insta}>
-          <GithubIcon className="text-default-500" />
-        </Link>
-        <ThemeSwitch />
+        {/* <ThemeSwitch /> */}
         <NavbarMenuToggle />
       </NavbarContent>
 

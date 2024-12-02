@@ -3,7 +3,7 @@ export interface PetDetails {
   slug: string;
   name: string;
   mainImage?: string;
-  gender: string;
+  gender: Gender;
   age: number;
   traits?: string;
   traitsArray: string[];
@@ -17,3 +17,13 @@ export interface PetTrait {
   title: string;
   icon?: string;
 }
+
+export enum Gender {
+  MALE = "male",
+  FEMALE = "female",
+}
+
+export const titleForGender: Record<Gender, string> = {
+  [Gender.FEMALE]: "Девочка",
+  [Gender.MALE]: "Мальчик",
+};
