@@ -211,6 +211,25 @@ export const RightArrowIcon = ({
 );
 
 
+export const Blob1 = ({
+  size = 24,
+  width,
+  height,
+  ...props
+}: IconSvgProps) => (
+  <svg
+    height={size || height}
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 448 512"
+    width={size || width}
+    {...props}
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" id="visual" viewBox="0 0 900 600" width="900" height="600" version="1.1"><g transform="translate(432.35871987930165 463.73697990230306)"><path d="M301.8 -362.6C385 -289.8 442.1 -188.9 450.4 -87.5C458.7 14 418.2 116 334.9 130.7C251.7 145.3 125.9 72.7 60.6 42.8C-4.7 12.8 -9.3 25.7 -61.7 55.9C-114.1 86.2 -214.3 133.8 -294.1 112.9C-374 92 -433.7 2.5 -411.5 -63.8C-389.3 -130 -285.3 -173 -203.1 -246C-120.8 -319 -60.4 -422 24.4 -451.1C109.3 -480.2 218.5 -435.5 301.8 -362.6" fill="#BB004B" /></g></svg>
+  </svg>
+);
+
+
+
 export const HeartFilledIcon = ({
   size = 24,
   width,

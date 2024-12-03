@@ -1,5 +1,5 @@
 import { ClientOnly } from "@/components/client-only";
-import { DogIcon, HeartFilledIcon, PawIcon } from "@/components/icons";
+import { Blob1, DogIcon, HeartFilledIcon, PawIcon } from "@/components/icons";
 import { PetCard } from "@/components/pet-card";
 import PetsCarousel from "@/components/pets-carousel";
 import Section from "@/components/section";
@@ -30,6 +30,34 @@ const Home: FC = async () => {
     </Button>
   )
 
+  const petIntro =
+    (
+      <div className="flex justify-center items-center w-full m-auto">
+        <div className="relative flex flex-col items-center w-full md:w-[60%]">
+
+          <div className="flex flex-row items-center gap-10 relative">
+
+            <Image src="/assets/dog2.png" className="z-20 w-48 border-gray-900"
+              style={{ transform: "translateY(37.5%)" }}
+            />
+
+            <h1 className="page-title w-fit text-end text-3xl font-bold mt-[30%] tracking-wide">
+              Наши хвостики
+            </h1>
+          </div>
+
+
+
+          {/* Subtext */}
+          <div className="z-10 bg-accentGreen-400 px-6 py-8 w-full rounded-full">
+            <p className="pl-40 text-xl font-semibold text-white text-center">
+              Давайте знакомиться!
+            </p>
+          </div>
+        </div>
+      </div>
+    )
+
   return (
     <div className="flex flex-col items-center gap-16">
       <Section classOverrides="py-9">
@@ -57,10 +85,11 @@ const Home: FC = async () => {
         </div>
       </Section>
 
-      <Section classOverrides="container">
+      <Section classOverrides="container pt-0">
         <div className="flex flex-col gap-8">
-          <div className="flex flex-col md:flex-row md:justify-between md:items-center">
-            <h1 className="page-title text-center my-5 md:text-start">{content.dogsGallery.title}</h1>
+
+          <div className="mb-8">
+            {petIntro}
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
