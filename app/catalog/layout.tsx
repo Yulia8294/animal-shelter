@@ -5,5 +5,5 @@ export default function BlogLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <Section>{children}</Section>;
+  return <Section classOverrides="py-8">{children}</Section>;
 }

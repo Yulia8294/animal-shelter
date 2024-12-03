@@ -20,10 +20,9 @@ const Home: FC = async () => {
   const catalogButton = (title: string) => (
     <Button
       as={Link}
-      className="text-md self-center rounded-full bg-accentYellow-500 px-12 py-8 font-semibold text-white"
+      className="text-lg self-center rounded-full bg-accentYellow-500 px-20 py-12 font-semibold text-white"
       href={"/catalog"}
       variant="flat"
-      size="lg"
       endContent={<DogIcon fill="white" />}
     >
       {title}
@@ -123,7 +122,7 @@ const Home: FC = async () => {
 
 
 
-          <Card className="rounded-3xl flex-1 bg-accentPurple-500">
+          <Card className="rounded-3xl flex-1 bg-accentGreen-400">
             <CardBody>
               <div>
                 <Image

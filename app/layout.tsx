@@ -45,7 +45,7 @@ export default function RootLayout({
           <Navbar />
           {/* container mx-auto max-w-7xl pt-16 px-6 */}
           <main className="flex-grow">{children}</main>
-          <footer className="w-full flex items-center justify-start p-10 bg-accentPurple-500">
+          <footer className="w-full flex items-center justify-start p-10 bg-accentGreen-400">
             <h4 className="text-white">Контакты:</h4>
           </footer>
         </Providers>

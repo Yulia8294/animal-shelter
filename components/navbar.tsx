@@ -20,12 +20,15 @@ import { useState } from "react";
 export const Navbar = () => {
   const [isNavbarColored, setIsNavbarColored] = useState<boolean>(false);
   const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   return (
     <NextUINavbar
       classNames={{
         item: ["navbar-item"],
       }}
+      isMenuOpen={isMenuOpen}
+      onMenuOpenChange={setIsMenuOpen}
       maxWidth="full"
       position="sticky"
       isBlurred={true}
@@ -88,24 +91,12 @@ export const Navbar = () => {
         <NavbarMenuToggle />
       </NavbarContent>
 
-      <NavbarMenu>
+      <NavbarMenu >
         {/* {searchInput} */}
         <div className="mx-4 mt-2 flex flex-col gap-2">
           {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
-              <Link
-                color={
-                  index === 2
-                    ? "primary"
-                    : index === siteConfig.navMenuItems.length - 1
-                      ? "danger"
-                      : "foreground"
-                }
-                href="#"
-                size="lg"
-              >
-                {item.label}
-              </Link>
+            <NavbarMenuItem isActive={pathname === item.href} key={item.href}>
+              <NextLink onClick={() => setIsMenuOpen(false)} href={item.href}>{item.label}</NextLink>
             </NavbarMenuItem>
           ))}
         </div>

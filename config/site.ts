@@ -23,16 +23,20 @@ export const siteConfig = {
   ],
   navMenuItems: [
     {
-      label: "Profile",
-      href: "/profile",
+      label: "Приют",
+      href: "/",
     },
     {
-      label: "Dashboard",
-      href: "/dashboard",
+      label: "Наши хвостики",
+      href: "/catalog",
     },
     {
-      label: "Projects",
-      href: "/projects",
+      label: "Как помочь?",
+      href: "/help",
+    },
+    {
+      label: "Контакты",
+      href: "/contacts",
     },
   ],
   links: {
