@@ -2,7 +2,6 @@ import { LeftArrowIcon, RightArrowIcon } from "@/components/icons";
 import { fetchItemBySlug } from "@/repository/api";
 import { Button } from "@nextui-org/button";
 import Link from "next/link";
-import React, { FC } from "react";
 import PetDetailsView from "../../../components/details";
 
 interface ComponentProps {
@@ -11,7 +10,7 @@ interface ComponentProps {
   };
 }
 
-const PetDetails: FC<ComponentProps> = async ({ params }) => {
+const PetDetailsPage = async ({ params }: ComponentProps) => {
   const { slug } = params;
 
   const pet = await fetchItemBySlug(slug);
@@ -46,4 +45,4 @@ const PetDetails: FC<ComponentProps> = async ({ params }) => {
   );
 };
 
-export default PetDetails;
+export default PetDetailsPage;

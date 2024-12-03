@@ -12,7 +12,7 @@ import { Link } from "@nextui-org/link";
 import React, { FC } from "react";
 import { PetStatus } from "./models";
 
-const Home: FC = async () => {
+const Home = async () => {
   const content = AppText.MainPage;
   const catalog = await fetchCatalog([PetStatus.SHELTER], 6);
   const foundHomeCatalog = await fetchCatalog([PetStatus.HOME])
