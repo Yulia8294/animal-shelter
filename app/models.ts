@@ -4,12 +4,19 @@ export interface PetDetails {
   name: string;
   mainImage?: string;
   gender: Gender;
-  age: number;
+  age?: number;
   traits?: string;
   traitsArray: string[];
   story?: string;
   media?: string;
   images?: string[];
+  status?: PetStatus; 
+  enabled?: boolean;
+}
+
+export enum PetStatus {
+  HOME = 'home',
+  SHELTER = 'shelter',
 }
 
 export interface PetTrait {

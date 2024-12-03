@@ -1,11 +1,12 @@
 import { ClientOnly } from "@/components/client-only";
 import { PetCard } from "@/components/pet-card";
 import { AppText } from "@/content/texts";
-import { fetchDogs } from "@/repository/api";
+import { fetchCatalog } from "@/repository/api";
+import { PetStatus } from "../models";
 
 const CatalogPage = async () => {
   const pageContent = AppText.CatalogPage;
-  const catalog = await fetchDogs();
+  const catalog = await fetchCatalog([PetStatus.SHELTER]);
 
   return (
     <div className="flex flex-col justify-stretch gap-15 container w-full">

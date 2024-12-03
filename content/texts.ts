@@ -96,6 +96,7 @@ const MainPage = {
   dogsGallery: {
     title: "Наши хвостики",
     actionBtn: "Смотреть всех",
+    actionBtnBottom: "Больше песиков"
   },
   about: {
     description:

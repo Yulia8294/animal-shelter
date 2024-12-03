@@ -10,6 +10,30 @@ interface ComponentProps {
 }
 
 const PetsCarousel: FC<ComponentProps> = ({ items }) => {
+
+  const responsiveOptions = [
+    {
+      breakpoint: '1400px',
+      numVisible: 4,
+      numScroll: 1
+    },
+    {
+      breakpoint: '1250px',
+      numVisible: 3,
+      numScroll: 1
+    },
+    {
+      breakpoint: '1000px',
+      numVisible: 2,
+      numScroll: 1
+    },
+    {
+      breakpoint: '575px',
+      numVisible: 1,
+      numScroll: 1
+    }
+  ];
+
   const itemTemplate = (item: PetDetails) => {
     return (
       <div className="p-5">
@@ -30,7 +54,8 @@ const PetsCarousel: FC<ComponentProps> = ({ items }) => {
       numVisible={4}
       numScroll={1}
       showNavigators={false}
-      autoplayInterval={3000}
+      responsiveOptions={responsiveOptions}
+      autoplayInterval={2000}
       showIndicators={false}
       itemTemplate={itemTemplate}
     />

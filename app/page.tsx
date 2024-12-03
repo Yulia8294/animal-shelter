@@ -1,18 +1,34 @@
 import { ClientOnly } from "@/components/client-only";
-import { HeartFilledIcon, PawIcon } from "@/components/icons";
+import { DogIcon, HeartFilledIcon, PawIcon } from "@/components/icons";
 import { PetCard } from "@/components/pet-card";
+import PetsCarousel from "@/components/pets-carousel";
 import Section from "@/components/section";
 import { AppText, helpItems, helpOptions } from "@/content/texts";
-import { fetchDogs } from "@/repository/api";
+import { fetchCatalog } from "@/repository/api";
 import { Button } from "@nextui-org/button";
 import { Card, CardBody, CardFooter } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
 import { Link } from "@nextui-org/link";
 import React, { FC } from "react";
+import { PetStatus } from "./models";
 
 const Home: FC = async () => {
   const content = AppText.MainPage;
-  const catalog = await fetchDogs();
+  const catalog = await fetchCatalog([PetStatus.SHELTER], 6);
+  const foundHomeCatalog = await fetchCatalog([PetStatus.HOME])
+
+  const catalogButton = (title: string) => (
+    <Button
+      as={Link}
+      className="text-md self-center rounded-full bg-accentYellow-500 px-12 py-8 font-semibold text-white"
+      href={"/catalog"}
+      variant="flat"
+      size="lg"
+      endContent={<DogIcon fill="white" />}
+    >
+      {title}
+    </Button>
+  )
 
   return (
     <div className="flex flex-col items-center gap-16">
@@ -26,7 +42,7 @@ const Home: FC = async () => {
 
           <div className="absolute bottom-0 left-0 right-0 top-0 z-10 flex flex-col items-center justify-end gap-2 p-10 text-center">
             <h1 className="font-semibold text-white">{content.title}</h1>
-            <h4 className="text-white/90">{content.subtitle}</h4>
+            <h4 className="text-white/90 font-semibold">{content.subtitle}</h4>
             <Button
               as={Link}
               className="mt-5 rounded-full bg-accentYellow-500 px-16 py-10 text-lg font-semibold text-white"
@@ -42,22 +58,12 @@ const Home: FC = async () => {
       </Section>
 
       <Section classOverrides="container">
-        <div>
-          <div className="flex justify-between">
-            <h1 className="page-title">{content.dogsGallery.title}</h1>
-
-            <Button
-              as={Link}
-              className="text-md mt-5 rounded-full bg-accentPurple-500 px-12 py-8 font-semibold text-white"
-              href={"/catalog"}
-              variant="flat"
-              size="lg"
-            >
-              {content.dogsGallery.actionBtn}
-            </Button>
+        <div className="flex flex-col gap-8">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-center">
+            <h1 className="page-title text-center my-5 md:text-start">{content.dogsGallery.title}</h1>
           </div>
 
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {catalog.map((pet) => {
               return (
                 <ClientOnly key={pet.id}>
@@ -66,28 +72,45 @@ const Home: FC = async () => {
               );
             })}
           </div>
+
+          <div className="m-auto">
+            {catalogButton(content.dogsGallery.actionBtnBottom)}
+          </div>
         </div>
       </Section>
 
       <Section classOverrides="bg-[url(/assets/bg-blob.svg)] relative w-full">
-        <div className="container grid grid-cols-2">
-          <div />
-          <Card isBlurred className="rounded-3xl bg-background/60">
+        <div className="flex flex-col lg:flex-row gap-8">
+
+          <div className="hidden lg:flex relative flex-1 max-w-[40%]">
+            <Image
+              width={500}
+              height={500}
+              removeWrapper
+              src="assets/dog.png"
+              className="absolute bottom-0 left-0 mb-[-5rem] ml-[-2.6rem] scale-x-[-1] object-cover"
+            />
+          </div>
+
+
+
+          <Card className="rounded-3xl flex-1 bg-accentPurple-500">
             <CardBody>
-              <p
-                dangerouslySetInnerHTML={{ __html: content.about.description }}
-                className="px-6 py-20 text-left text-3xl text-primary-500/80"
-              />
+              <div>
+                <Image
+                  removeWrapper
+                  className="lg:hidden"
+                  src="assets/приют3.png"
+                />
+
+                <p
+                  dangerouslySetInnerHTML={{ __html: content.about.description }}
+                  className="px-6 py-10 text-left text-3xl leading-10 text-white"
+                />
+              </div>
             </CardBody>
           </Card>
         </div>
-
-        <Image
-          width={500}
-          height={500}
-          src="assets/dog.png"
-          className="absolute bottom-0 left-0 mb-[-5rem] ml-[-2.6rem] scale-x-[-1]"
-        />
       </Section>
 
       <Section classOverrides="container">
@@ -104,7 +127,7 @@ const Home: FC = async () => {
                 </CardBody>
 
                 <CardFooter>
-                  <h4>{item.title}</h4>
+                  <h3 className="w-full text-center font-semibold">{item.title}</h3>
                   <p>{item.subtitle}</p>
                 </CardFooter>
               </Card>
@@ -163,13 +186,13 @@ const Home: FC = async () => {
         </div>
       </Section>
 
-      {/* <Section classOverrides="container">
+      <Section classOverrides="container">
         <h1 className="page-title">{content.foundHome.title}</h1>
 
         <div className="flex gap-8 overflow-visible">
-          <PetsCarousel items={catalog} />
+          <PetsCarousel items={foundHomeCatalog} />
         </div>
-      </Section> */}
+      </Section>
     </div>
   );
 };

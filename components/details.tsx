@@ -159,7 +159,7 @@ const PetDetailsView: FC<ComponentProps> = ({ pet }) => {
   );
 
   return (
-    <div className="flex flex-col md:flex-row md:justify-start gap-8 container bg-accentYellow-200/10 shadow-2xl p-9 rounded-3xl">
+    <div className="flex flex-col md:flex-row md:justify-start gap-8 container border-1 border-accentGreen-100 bg-accentGreen-100/30 shadow-2xl p-9 rounded-3xl">
       {fullScreenGalleryTemplate}
 
       <Galleria
@@ -175,7 +175,7 @@ const PetDetailsView: FC<ComponentProps> = ({ pet }) => {
         {petInfoTemplate}
 
         <Button
-          className="px-16 py-10 mt-16 text-[1.5rem] rounded-full font-semibold text-white bg-accentYellow-500"
+          className="px-16 py-10 mt-16 text-[1.5rem] rounded-full font-semibold text-white bg-accentGreen-500"
           variant="flat"
           size="lg"
           onClick={() =>

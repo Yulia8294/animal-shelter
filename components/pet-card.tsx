@@ -62,9 +62,9 @@ export const PetCard: FC<ComponentProps> = ({
               <div className="text-start text-md md:text-lg lg:text-2xl text-white font-semibold">
                 {data.name}
               </div>
-              <div className="text-start text-md md:text-lg lg:text-2xl text-white">
+              {data.age && <div className="text-start text-md md:text-lg lg:text-2xl text-white">
                 {data.age} лет
-              </div>
+              </div>}
             </div>
             {/* {showFavoriteIcon && (
               <Button

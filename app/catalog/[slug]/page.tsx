@@ -1,5 +1,5 @@
-import { LeftArrowIcon } from "@/components/icons";
-import { fetchDogBySlug } from "@/repository/api";
+import { LeftArrowIcon, RightArrowIcon } from "@/components/icons";
+import { fetchItemBySlug } from "@/repository/api";
 import { Button } from "@nextui-org/button";
 import Link from "next/link";
 import React, { FC } from "react";
@@ -14,19 +14,32 @@ interface ComponentProps {
 const PetDetails: FC<ComponentProps> = async ({ params }) => {
   const { slug } = params;
 
-  const pet = await fetchDogBySlug(slug);
+  const pet = await fetchItemBySlug(slug);
 
   return (
-    <div className="flex-col gap-10">
-      <Button
-        as={Link}
-        className="px-5 py-7 text-lg ml-8 rounded-full font-semibold text-white bg-accentYellow-500"
-        href={"/catalog"}
-        startContent={<LeftArrowIcon fill="white" />}
-        variant="flat"
-      >
-        В каталог
-      </Button>
+    <div className="flex flex-col gap-10">
+      <div className="flex justify-between">
+
+        <Button
+          as={Link}
+          className="px-5 py-7 text-lg rounded-full font-semibold text-white bg-accentGreen-400"
+          href={"/catalog"}
+          startContent={<LeftArrowIcon fill="white" />}
+          variant="flat"
+        >
+          В каталог
+        </Button>
+
+        <Button
+          as={Link}
+          className="px-5 py-7 text-lg rounded-full font-semibold text-white bg-accentGreen-500"
+          href={"/catalog"}
+          endContent={<RightArrowIcon fill="white" />}
+          variant="flat"
+        >
+          Следующий песик
+        </Button>
+      </div>
 
       <PetDetailsView pet={pet} />
     </div>

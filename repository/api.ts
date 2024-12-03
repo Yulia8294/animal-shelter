@@ -1,23 +1,63 @@
-import { PetDetails } from "@/app/models";
+import { PetDetails, PetStatus } from "@/app/models";
 
-export async function fetchDogs(): Promise<PetDetails[]> {
+export async function fetchCatalog(status?: PetStatus[], numberOfItems?: number): Promise<PetDetails[]> {
   const response: PetDetails[] = await fetch(
+    `${process.env.URL}/assets/data/database.json`,
+    { method: "get", cache: 'no-cache' },
+  ).then((result) => result.json());
+
+  let result = response;
+
+
+  if (status) {
+    result = result.filter(item => item.status && status.includes(item.status))
+  }
+
+  if (numberOfItems) {
+    result = result.slice(0, numberOfItems);
+  }
+
+  result.forEach((item) => {
+    item.traitsArray = item.traits?.split(",") ?? [];
+  });
+
+  result = await populatePhotos(result);
+
+  return result;
+}
+
+export async function fetchItemBySlug(slug: string): Promise<PetDetails> {
+  const allPets: PetDetails[] = await fetch(
     `${process.env.URL}/assets/data/database.json`,
     { method: "get" },
   ).then((result) => result.json());
 
-  response.forEach((item) => {
-    item.traitsArray = item.traits?.split(",") ?? [];
-  });
+  let pet = allPets.find((pet) => pet.slug === slug);
 
+  if (pet) {
+    pet = await populatePhotosForItem(pet);
+  } else {
+    throw new Error("Not found");
+  }
+
+  return pet;
+}
+
+
+async function populatePhotos(pets: PetDetails[]): Promise<PetDetails[]> {
   // Iterate over each pet to add images dynamically
   await Promise.allSettled(
-    response.map(async (pet) => {
-      try {
-        // Fetch images for the current pet using the dynamic API route
-        console.log("Fetching for", pet.slug);
+    pets.map(async (pet) => populatePhotosForItem(pet)),
+  );
 
-        const imageResponse = await fetch(
+  return pets; // Return the updated list of pets
+}
+
+async function populatePhotosForItem(pet: PetDetails): Promise<PetDetails> {
+    try {
+      console.log("Fetching for", pet.slug);
+
+      const imageResponse = await fetch(
           `${process.env.URL}/api/media/${pet.slug}`,
         );
         const imageUrls: string[] = await imageResponse.json(); // Get the list of image URLs
@@ -27,34 +67,5 @@ export async function fetchDogs(): Promise<PetDetails[]> {
       } catch (error) {
         pet.images = [];
       }
-    }),
-  );
-
-  return response; // Return the updated list of pets
-}
-
-export async function fetchDogBySlug(slug: string): Promise<PetDetails> {
-  const allDogs: PetDetails[] = await fetch(
-    `${process.env.URL}/assets/data/database.json`,
-    { method: "get" },
-  ).then((result) => result.json());
-
-  const dog = allDogs.find((dog) => dog.slug === slug);
-
-  if (dog) {
-    try {
-      const imageResponse = await fetch(`${process.env.URL}/api/media/${slug}`);
-      const imageUrls: string[] = await imageResponse.json();
-
-      dog.images = imageUrls;
-      dog.mainImage = imageUrls[0];
-    } catch {
-      dog.images = [];
-      dog.mainImage = undefined;
-    }
-  } else {
-    throw new Error("Not found");
-  }
-
-  return dog;
+  return pet;
 }
