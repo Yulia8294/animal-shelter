@@ -1,9 +1,9 @@
 import { PetDetails, PetStatus } from "@/app/models";
 
 export async function fetchCatalog(status?: PetStatus[], numberOfItems?: number): Promise<PetDetails[]> {
-  console.log('--------PATH', `${process.env.URL}/assets/data/database.json`,)
+  console.log('--------PATH', `${process.env.NEXT_PUBLIC_URL}/assets/data/database.json`,)
   const response: PetDetails[] = await fetch(
-    `${process.env.URL}/assets/data/database.json`,
+    `${process.env.NEXT_PUBLIC_URL}/assets/data/database.json`,
     { method: "get", cache: 'no-cache' },
   ).then((result) => result.json());
 
@@ -29,7 +29,7 @@ export async function fetchCatalog(status?: PetStatus[], numberOfItems?: number)
 
 export async function fetchItemBySlug(slug: string): Promise<PetDetails> {
   const allPets: PetDetails[] = await fetch(
-    `${process.env.URL}/assets/data/database.json`,
+    `${process.env.NEXT_PUBLIC_URL}/assets/data/database.json`,
     { method: "get" },
   ).then((result) => result.json());
 
@@ -59,7 +59,7 @@ async function populatePhotosForItem(pet: PetDetails): Promise<PetDetails> {
       console.log("Fetching for", pet.slug);
 
       const imageResponse = await fetch(
-          `${process.env.URL}/api/media/${pet.slug}`,
+          `${process.env.NEXT_PUBLIC_URL}/api/media/${pet.slug}`,
         );
         const imageUrls: string[] = await imageResponse.json(); // Get the list of image URLs
 

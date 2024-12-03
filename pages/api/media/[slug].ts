@@ -21,7 +21,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     const files = fs.readdirSync(folderPath);
 
     const imageUrls = files.map(
-      (file) => `${process.env.URL}/assets/media/${slug}/${file}`,
+      (file) => `${process.env.NEXT_PUBLIC_URL}/assets/media/${slug}/${file}`,
     );
 
     res.status(200).json(imageUrls);
