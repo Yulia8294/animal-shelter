@@ -1,9 +1,9 @@
 import { PetDetails, PetStatus } from "@/app/models";
 
 export async function fetchCatalog(status?: PetStatus[], numberOfItems?: number): Promise<PetDetails[]> {
-  console.log('--------PATH', `${process.env.NEXT_PUBLIC_URL}/assets/data/database.json`,)
+  console.log('--------PATH', `${process.env.NEXT_PUBLIC_VERCEL_URL}/assets/data/database.json`,)
   const response: PetDetails[] = await fetch(
-    `${process.env.NEXT_PUBLIC_URL}/assets/data/database.json`,
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/assets/data/database.json`,
     { method: "get", cache: 'no-cache' },
   ).then((result) => result.json());
 
