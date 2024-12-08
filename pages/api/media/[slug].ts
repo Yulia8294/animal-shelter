@@ -22,7 +22,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
     const imageUrls = files.map(
       (file) =>
-        `${process.env.URL_SCHEME}://${process.env.VERCEL_URL}/assets/media/${slug}/${file}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/assets/media/${slug}/${file}`,
     );
 
     res.status(200).json(imageUrls);
