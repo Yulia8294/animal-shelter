@@ -3,15 +3,12 @@ import { fetchItemBySlug } from "@/repository/api";
 import { Button } from "@nextui-org/button";
 import Link from "next/link";
 import PetDetailsView from "../../../components/details";
+import { use } from "react";
 
-interface ComponentProps {
-  params: {
-    slug: string;
-  };
-}
+type Params = Promise<{ slug: string }>
 
-const PetDetailsPage = async ({ params }: ComponentProps) => {
-  const { slug } = params;
+const PetDetailsPage = async (props: { params: Params }) => {
+  const { slug } = use(props.params);
 
   const pet = await fetchItemBySlug(slug);
 
