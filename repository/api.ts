@@ -1,16 +1,24 @@
 import { PetDetails, PetStatus } from "@/app/models";
+import { promises as fs } from "fs";
 
 export async function fetchCatalog(
   status?: PetStatus[],
   numberOfItems?: number,
 ): Promise<PetDetails[]> {
-  console.log("--------PATH", `${BASE_URL}/assets/data/database.json`);
+  console.log("--------PATH", `${process.cwd()}/assets/data/database.json"`);
 
   try {
-    const response: PetDetails[] = await fetch(
-      `${BASE_URL}/assets/data/database.json`,
-      { method: "get", cache: "no-cache" },
-    ).then((result) => result.json());
+    const file = await fs.readFile(
+      process.cwd() + "/assets/data/database.json",
+      "utf8",
+    );
+
+    const response: PetDetails[] = JSON.parse(file);
+
+    // const response: PetDetails[] = await fetch(
+    //   `${BASE_URL}/assets/data/database.json`,
+    //   { method: "get", cache: "no-cache" },
+    // ).then((result) => result.json());
 
     let result = response;
 
