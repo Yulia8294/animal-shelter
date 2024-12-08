@@ -4,12 +4,9 @@ export async function fetchCatalog(
   status?: PetStatus[],
   numberOfItems?: number,
 ): Promise<PetDetails[]> {
-  console.log(
-    "--------PATH",
-    `${process.env.NEXT_PUBLIC_BASE_URL}/assets/data/database.json`,
-  );
+  console.log("--------PATH", `${BASE_URL}/assets/data/database.json`);
   const response: PetDetails[] = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/assets/data/database.json`,
+    `${BASE_URL}/assets/data/database.json`,
     { method: "get", cache: "no-cache" },
   ).then((result) => result.json());
 
@@ -36,7 +33,7 @@ export async function fetchCatalog(
 
 export async function fetchItemBySlug(slug: string): Promise<PetDetails> {
   const allPets: PetDetails[] = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/assets/data/database.json`,
+    `${BASE_URL}/assets/data/database.json`,
     { method: "get" },
   ).then((result) => result.json());
 
@@ -62,9 +59,7 @@ async function populatePhotosForItem(pet: PetDetails): Promise<PetDetails> {
   try {
     console.log("Fetching for", pet.slug);
 
-    const imageResponse = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/media/${pet.slug}`,
-    );
+    const imageResponse = await fetch(`${BASE_URL}/api/media/${pet.slug}`);
     const imageUrls: string[] = await imageResponse.json(); // Get the list of image URLs
 
     pet.images = imageUrls; // Assign the URLs to the pet's `images` property
@@ -75,3 +70,7 @@ async function populatePhotosForItem(pet: PetDetails): Promise<PetDetails> {
 
   return pet;
 }
+
+export const BASE_URL = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : "http://localhost:3000";

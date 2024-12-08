@@ -1,3 +1,4 @@
+import { BASE_URL } from "@/repository/api";
 import fs from "fs";
 import { NextApiRequest, NextApiResponse } from "next";
 import path from "path";
@@ -21,8 +22,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     const files = fs.readdirSync(folderPath);
 
     const imageUrls = files.map(
-      (file) =>
-        `${process.env.NEXT_PUBLIC_BASE_URL}/assets/media/${slug}/${file}`,
+      (file) => `${BASE_URL}/assets/media/${slug}/${file}`,
     );
 
     res.status(200).json(imageUrls);
