@@ -42,7 +42,13 @@ export async function fetchItemBySlug(slug: string): Promise<PetDetails> {
     const allPets: PetDetails[] = await fetch(
       `${BASE_URL}/assets/data/database.json`,
       { method: "get" },
-    ).then((result) => result.json());
+    ).then((result) => {
+      if (result.ok) {
+        return result.json();
+      } else {
+        throw new Error("Failed to fetch item");
+      }
+    });
 
     let pet = allPets.find((pet) => pet.slug === slug);
 
@@ -67,17 +73,17 @@ async function populatePhotos(pets: PetDetails[]): Promise<PetDetails[]> {
 }
 
 async function populatePhotosForItem(pet: PetDetails): Promise<PetDetails> {
-  // try {
-  //   console.log("Fetching for", pet.slug);
+  try {
+    console.log("Fetching for", pet.slug);
 
-  //   const imageResponse = await fetch(`${BASE_URL}/api/media/${pet.slug}`);
-  //   const imageUrls: string[] = await imageResponse.json(); // Get the list of image URLs
+    const imageResponse = await fetch(`${BASE_URL}/api/media/${pet.slug}`);
+    const imageUrls: string[] = await imageResponse.json(); // Get the list of image URLs
 
-  //   pet.images = imageUrls; // Assign the URLs to the pet's `images` property
-  //   pet.mainImage = imageUrls[0];
-  // } catch (error) {
-  //   pet.images = [];
-  // }
+    pet.images = imageUrls; // Assign the URLs to the pet's `images` property
+    pet.mainImage = imageUrls[0];
+  } catch (error) {
+    pet.images = [];
+  }
 
   return pet;
 }
