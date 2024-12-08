@@ -6,10 +6,10 @@ export async function fetchCatalog(
 ): Promise<PetDetails[]> {
   console.log(
     "--------PATH",
-    `${process.env.NEXT_PUBLIC_URL}/assets/data/database.json`,
+    `${process.env.URL_SCHEME}://${process.env.VERCEL_URL}/assets/data/database.json`,
   );
   const response: PetDetails[] = await fetch(
-    `${process.env.NEXT_PUBLIC_URL}/assets/data/database.json`,
+    `${process.env.URL_SCHEME}://${process.env.VERCEL_URL}/assets/data/database.json`,
     { method: "get", cache: "no-cache" },
   ).then((result) => result.json());
 
@@ -36,7 +36,7 @@ export async function fetchCatalog(
 
 export async function fetchItemBySlug(slug: string): Promise<PetDetails> {
   const allPets: PetDetails[] = await fetch(
-    `${process.env.NEXT_PUBLIC_URL}/assets/data/database.json`,
+    `${process.env.URL_SCHEME}://${process.env.VERCEL_URL}/assets/data/database.json`,
     { method: "get" },
   ).then((result) => result.json());
 
@@ -63,7 +63,7 @@ async function populatePhotosForItem(pet: PetDetails): Promise<PetDetails> {
     console.log("Fetching for", pet.slug);
 
     const imageResponse = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/media/${pet.slug}`,
+      `${process.env.URL_SCHEME}://${process.env.VERCEL_URL}/api/media/${pet.slug}`,
     );
     const imageUrls: string[] = await imageResponse.json(); // Get the list of image URLs
 
@@ -72,5 +72,6 @@ async function populatePhotosForItem(pet: PetDetails): Promise<PetDetails> {
   } catch (error) {
     pet.images = [];
   }
+
   return pet;
 }

@@ -1,6 +1,6 @@
 import fs from "fs";
-import path from "path";
 import { NextApiRequest, NextApiResponse } from "next";
+import path from "path";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const { slug } = req.query;
@@ -21,7 +21,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     const files = fs.readdirSync(folderPath);
 
     const imageUrls = files.map(
-      (file) => `${process.env.NEXT_PUBLIC_URL}/assets/media/${slug}/${file}`,
+      (file) =>
+        `${process.env.URL_SCHEME}://${process.env.VERCEL_URL}/assets/media/${slug}/${file}`,
     );
 
     res.status(200).json(imageUrls);
