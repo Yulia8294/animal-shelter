@@ -1,17 +1,24 @@
 import { PetDetails, PetStatus } from "@/app/models";
 
-export async function fetchCatalog(status?: PetStatus[], numberOfItems?: number): Promise<PetDetails[]> {
-  console.log('--------PATH', `${process.env.NEXT_PUBLIC_VERCEL_URL}/assets/data/database.json`,)
+export async function fetchCatalog(
+  status?: PetStatus[],
+  numberOfItems?: number,
+): Promise<PetDetails[]> {
+  console.log(
+    "--------PATH",
+    `${process.env.NEXT_PUBLIC_URL}/assets/data/database.json`,
+  );
   const response: PetDetails[] = await fetch(
-    `${process.env.NEXT_PUBLIC_VERCEL_URL}/assets/data/database.json`,
-    { method: "get", cache: 'no-cache' },
+    `${process.env.NEXT_PUBLIC_URL}/assets/data/database.json`,
+    { method: "get", cache: "no-cache" },
   ).then((result) => result.json());
 
   let result = response;
 
-
   if (status) {
-    result = result.filter(item => item.status && status.includes(item.status))
+    result = result.filter(
+      (item) => item.status && status.includes(item.status),
+    );
   }
 
   if (numberOfItems) {
@@ -44,29 +51,26 @@ export async function fetchItemBySlug(slug: string): Promise<PetDetails> {
   return pet;
 }
 
-
 async function populatePhotos(pets: PetDetails[]): Promise<PetDetails[]> {
   // Iterate over each pet to add images dynamically
-  await Promise.allSettled(
-    pets.map(async (pet) => populatePhotosForItem(pet)),
-  );
+  await Promise.allSettled(pets.map(async (pet) => populatePhotosForItem(pet)));
 
   return pets; // Return the updated list of pets
 }
 
 async function populatePhotosForItem(pet: PetDetails): Promise<PetDetails> {
-    try {
-      console.log("Fetching for", pet.slug);
+  try {
+    console.log("Fetching for", pet.slug);
 
-      const imageResponse = await fetch(
-          `${process.env.NEXT_PUBLIC_URL}/api/media/${pet.slug}`,
-        );
-        const imageUrls: string[] = await imageResponse.json(); // Get the list of image URLs
+    const imageResponse = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/media/${pet.slug}`,
+    );
+    const imageUrls: string[] = await imageResponse.json(); // Get the list of image URLs
 
-        pet.images = imageUrls; // Assign the URLs to the pet's `images` property
-        pet.mainImage = imageUrls[0];
-      } catch (error) {
-        pet.images = [];
-      }
+    pet.images = imageUrls; // Assign the URLs to the pet's `images` property
+    pet.mainImage = imageUrls[0];
+  } catch (error) {
+    pet.images = [];
+  }
   return pet;
 }
